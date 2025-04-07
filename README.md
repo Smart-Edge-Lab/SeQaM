@@ -15,20 +15,12 @@ SeQaM can be used for:
 Moreover, the platform is designed for seamless deployment in emulated, laboratory, and real-world environments, covering an edge application’s entire life cycle, from development to testing and runtime.
 
 
-![SeQaM-Deployment](imgs/Deployment_scenarios.png)
-
-
 ## Motivation/Problem
 
 
 Edge computing enables deploying compute and storage resources at the network's edge, closer to data sources, thereby reducing latency and bandwidth by sending data to a nearby edge server instead of a far away data center. However, the distributed and heterogeneous nature of edge computing makes it difficult to ensure consistent and reliable service quality. 
 
 End-to-end service quality refers to the overall service quality of an edge application, encompassing the entire journey from the user device, through the network, to the edge server, and back. To address the challenges that edge computing poses to guarantee end-to-end service quality, edge applications should implement adaptability techniques. These techniques enable applications to adjust their behavior in response to fluctuating conditions. Similarly, the edge infrastructure can be dynamically reallocated by shifting workloads between different edge servers based on current resource availability, network conditions, and application demands. In self-adaptive systems, this is typically achieved through a MAPE control loop (Monitor, Analyze, Plan, Execute), which allows to continuously optimize performance by monitoring changes, analyzing data, planning necessary adjustments, and executing modifications.
-
-
-![SeQaM-Motivation](imgs/SeQaM-Motivation.png)
-
-
 
 SeQaM introduces a solution for researchers, developers, and infrastructure providers to develop, implement, and test solutions that enhance end-to-end service quality in edge applications such as augmented reality, connected and autonomous vehicles, UAVs, etc. We are happy to hear about your use case and plan together a service quality management solution. 
 
@@ -41,9 +33,13 @@ The data collection is done using [OpenTelemetry](https://opentelemetry.io/). Th
 This version is the first release of SeQaM. There are some things still missing and room for improvement. Therefore, your contribution to the platform is highly appreciated.
 
 
+## Installing SeQaM
+
+ Please refer to the WIKI for installing and using SeQaM.
+
 ## Contribution
 
- See the [Contributing](/CONTRIBUTING.md) file for detailed guidelines on how to contribute to this project.
+ See the Contributing section in our WIKI for detailed guidelines on how to contribute to this project.
 
 ## Releases
 This version corresponds to the first release of SeQaM and the implementation code for the paper: SeQaM: A Service Quality Manager for Edge Computing in IWCMC 2025 Conference
