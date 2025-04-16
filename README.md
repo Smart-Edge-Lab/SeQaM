@@ -1,9 +1,8 @@
 
 
-The EMULATE project is part of the [8ra](https://www.8ra.com/) ("ORA" = continuum) Edge-Cloud Continuum, to build Europe’s Next Generation Cloud Infrastructure and Services towards digital sovereignty. The central objective of this cooperation is to establish a unified “cloud-edge continuum” that operates independently of any single provider and ensures service quality for users.
+The EMULATE project is part of the [8ra](https://www.8ra.com/) ("ORA" = continuum) Initiative. With more than 120 partners from 12 EU Member States, the 8ra Initiative aims to build Europe’s Next Generation Cloud Infrastructure and Services towards digital sovereignty, establishing a unified “cloud-edge continuum” that operates independently of any single provider.
 
-
-In EMULATE, we build concepts and tools for measuring, analyzing, and optimizing the performance of edge services. Edge computing has become a widely accepted concept over the last decade, encompassing both public commercial solutions and private customized solutions for specific requirements. However, potential users of applications with real-time quality of service requirements often lack appropriate tools to either assess the suitability of public edge service offerings or to plan, design, and build their customized edge computing solution. Therefore, we have designed a service quality manager (SeQaM) that analyzes existing physical and emulated infrastructures and provides meaningful performance metrics to assess their suitability for time-critical edge applications. 
+Edge computing has become a widely accepted concept over the last decade, encompassing both public commercial solutions and private customized solutions for specific requirements. However, potential users of applications with real-time service quality requirements often lack appropriate tools to either assess the suitability of public edge service offerings or to plan, design, and build their customized edge computing solution. In EMULATE, we focus on building concepts and tools for measuring, analyzing, and optimizing the performance of edge services. Therefore, we have designed a service quality manager (SeQaM) that analyzes existing physical and emulated infrastructures and provides meaningful performance metrics to assess their suitability for time-critical edge applications. 
 
 
 # SeQaM
