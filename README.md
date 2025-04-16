@@ -1,5 +1,7 @@
 
-![png_trns_logo (2)](https://github.com/user-attachments/assets/82452d4f-81ef-4964-b464-b12f41b51c7a)
+
+![Emulate](https://github.com/user-attachments/assets/bd3ef672-1c4e-42e8-b1ec-85cc0a9c7b4d)
+
 
 The [EMULATE](https://www.fh-dortmund.de/microsite/smartedgelab/projekte/emulate.php?loc=en) project is part of the [8ra](https://www.8ra.com/) ("ORA" = continuum) Initiative. With more than 120 partners from 12 EU Member States, the 8ra Initiative aims to build Europe’s Next Generation Cloud Infrastructure and Services towards digital sovereignty, establishing a unified “cloud-edge continuum” that operates independently of any single provider.
 
