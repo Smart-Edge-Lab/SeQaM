@@ -24,3 +24,9 @@ In case you have found SeQaM useful to implement your research, please cite our 
 
 J. S. Burbano, E. Zhantileuov, M. A. Salimi and R. Schuster, "Demo: End-to-End Service Quality Manager for Edge Computing," 2024 IEEE/ACM Symposium on Edge Computing (SEC), Rome, Italy, 2024, pp. 505-507, doi: 10.1109/SEC62691.2024.00059.
 
+
+## Important Websites
+* [SMART EDGE LAB](https://www.fh-dortmund.de/microsite/smartedgelab/index.php)
+* [EMULATE PROJECT](https://www.fh-dortmund.de/microsite/smartedgelab/projekte/emulate.php?loc=en)
+* [8RA INITIATIVE](https://www.8ra.com/)
+* [BMWK Press Article](https://www.bmwk.de/Redaktion/EN/Artikel/Industry/ipcei-cis.html)
