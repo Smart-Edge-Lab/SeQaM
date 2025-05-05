@@ -1,0 +1,8 @@
+flask==3.0.3
+requests==2.32.2
+opentelemetry-api==1.24.0
+opentelemetry-sdk==1.24.0
+opentelemetry-exporter-otlp==1.24.0
+pydantic==2.8.2
+clickhouse-connect==0.7.17
+fabric==3.2.2

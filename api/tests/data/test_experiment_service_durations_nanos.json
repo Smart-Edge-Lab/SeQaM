@@ -1,0 +1,206 @@
+[
+  {
+    "commands": [
+      "cpu_load comment:partition-point=1 time:5s load:10 src_device_type:ue src_device_name:ue001 mode:inc load_min:10 load_max:99 load_step:10 time_step:1 cores:5"
+    ],
+    "indexes": [
+      0
+    ],
+    "start_time": 1728298110334,
+    "end_time": 1728298111330,
+    "span_statistics": [],
+    "duration": 996
+  },
+  {
+    "commands": [
+      "cpu_load comment:partition-point=1 time:5s load:10 src_device_type:ue src_device_name:ue001 mode:inc load_min:10 load_max:99 load_step:10 time_step:1 cores:5",
+      "network_load time:10s load:10 src_device_type:ue src_device_name:ue002 dst_device_type:server dst_device_name:srv001 destination_host:172.22.174.190"
+    ],
+    "indexes": [
+      0,
+      1
+    ],
+    "start_time": 1728298111330,
+    "end_time": 1728298111352,
+    "span_statistics": [],
+    "duration": 22
+  },
+  {
+    "commands": [
+      "cpu_load comment:partition-point=1 time:5s load:10 src_device_type:ue src_device_name:ue001 mode:inc load_min:10 load_max:99 load_step:10 time_step:1 cores:5",
+      "network_load time:10s load:10 src_device_type:ue src_device_name:ue002 dst_device_type:server dst_device_name:srv001 destination_host:172.22.174.190",
+      "network_load time:10s load:10 src_device_type:ue src_device_name:ue002 dst_device_type:server dst_device_name:srv002 destination_host:192.168.122.194"
+    ],
+    "indexes": [
+      0,
+      1,
+      2
+    ],
+    "start_time": 1728298111352,
+    "end_time": 1728298115650,
+    "span_statistics": [
+      {
+        "name": "SQL SELECT",
+        "min_duration": 246965000,
+        "avg_duration": 332921500,
+        "max_duration": 545586000,
+        "count": 6,
+        "extra_statistics": {
+          "count": 6,
+          "mean": 332921500,
+          "std": 119956813.35005528,
+          "min": 246965000,
+          "25%": 252668250,
+          "50%": 274390000,
+          "75%": 376675250,
+          "max": 545586000
+        },
+        "raw_data": [
+          {
+            "trace_id": "000000000000000054dfbf42358775ad",
+            "span_id": "3d74b21c1538fab0",
+            "name": "SQL SELECT",
+            "timestamp": 1728298115217,
+            "duration": 251117000,
+            "tags": {}
+          },
+          {
+            "trace_id": "00000000000000002304a16bbb4a6a5f",
+            "span_id": "16982c958dffa980",
+            "name": "SQL SELECT",
+            "timestamp": 1728298114499,
+            "duration": 405081000,
+            "tags": {}
+          },
+          {
+            "trace_id": "00000000000000005db0f8747b1b575e",
+            "span_id": "1c2856dab26bcd1c",
+            "name": "SQL SELECT",
+            "timestamp": 1728298114349,
+            "duration": 257322000,
+            "tags": {}
+          },
+          {
+            "trace_id": "00000000000000002085d72c041eb426",
+            "span_id": "587446c96e565f10",
+            "name": "SQL SELECT",
+            "timestamp": 1728298112630,
+            "duration": 246965000,
+            "tags": {}
+          },
+          {
+            "trace_id": "00000000000000002f5f77e087216eb5",
+            "span_id": "6900e18f95989201",
+            "name": "SQL SELECT",
+            "timestamp": 1728298111922,
+            "duration": 545586000,
+            "tags": {}
+          },
+          {
+            "trace_id": "00000000000000002827e23bf9a6dbed",
+            "span_id": "70ef03d9c58b6bb8",
+            "name": "SQL SELECT",
+            "timestamp": 1728298111882,
+            "duration": 291458000,
+            "tags": {}
+          }
+        ]
+      }
+    ],
+    "duration": 4298
+  },
+  {
+    "commands": [
+      "network_load time:10s load:10 src_device_type:ue src_device_name:ue002 dst_device_type:server dst_device_name:srv001 destination_host:172.22.174.190",
+      "network_load time:10s load:10 src_device_type:ue src_device_name:ue002 dst_device_type:server dst_device_name:srv002 destination_host:192.168.122.194"
+    ],
+    "indexes": [
+      1,
+      2
+    ],
+    "start_time": 1728298115650,
+    "end_time": 1728298121340,
+    "span_statistics": [
+      {
+        "name": "SQL SELECT",
+        "min_duration": 275672000,
+        "avg_duration": 313730000,
+        "max_duration": 357792000,
+        "count": 6,
+        "extra_statistics": {
+          "count": 6,
+          "mean": 313730000,
+          "std": 35424119.07726147,
+          "min": 275672000,
+          "25%": 282730250,
+          "50%": 311673500,
+          "75%": 342283250,
+          "max": 357792000
+        },
+        "raw_data": [
+          {
+            "trace_id": "0000000000000000485d5e3281bdb19d",
+            "span_id": "09443d72215aac3b",
+            "name": "SQL SELECT",
+            "timestamp": 1728298121053,
+            "duration": 349876000,
+            "tags": {}
+          },
+          {
+            "trace_id": "0000000000000000535daf164a234cc3",
+            "span_id": "378eca99426a6dc3",
+            "name": "SQL SELECT",
+            "timestamp": 1728298120851,
+            "duration": 303842000,
+            "tags": {}
+          },
+          {
+            "trace_id": "0000000000000000242336f845f1e766",
+            "span_id": "12542eb361feef54",
+            "name": "SQL SELECT",
+            "timestamp": 1728298118863,
+            "duration": 357792000,
+            "tags": {}
+          },
+          {
+            "trace_id": "0000000000000000329f35bf26bd29b8",
+            "span_id": "3c0bbc06911bc212",
+            "name": "SQL SELECT",
+            "timestamp": 1728298118591,
+            "duration": 319505000,
+            "tags": {}
+          },
+          {
+            "trace_id": "00000000000000002bd993f332ca6c5b",
+            "span_id": "1fb7509bb8708e47",
+            "name": "SQL SELECT",
+            "timestamp": 1728298117347,
+            "duration": 275693000,
+            "tags": {}
+          },
+          {
+            "trace_id": "00000000000000002a38d632b4deb8ca",
+            "span_id": "468388df3cf39a67",
+            "name": "SQL SELECT",
+            "timestamp": 1728298116843,
+            "duration": 275672000,
+            "tags": {}
+          }
+        ]
+      }
+    ],
+    "duration": 5690
+  },
+  {
+    "commands": [
+      "network_load time:10s load:10 src_device_type:ue src_device_name:ue002 dst_device_type:server dst_device_name:srv002 destination_host:192.168.122.194"
+    ],
+    "indexes": [
+      2
+    ],
+    "start_time": 1728298121340,
+    "end_time": 1728298121366,
+    "span_statistics": [],
+    "duration": 26
+  }
+]

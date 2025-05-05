@@ -1,0 +1,5 @@
+docker build -t mserver .
+
+This will build an image called "mserver"
+mserver image will be reffered in the topology configuration when creating the server container
+

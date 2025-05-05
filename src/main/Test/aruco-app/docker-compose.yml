@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  server:
+    build: ./server
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./server:/app
+
+  client:
+    build: ./client
+    depends_on:
+      - server
+    volumes:
+      - ./client:/app
+      - ./client/aruco_markers.mkv:/app/aruco_markers.mkv

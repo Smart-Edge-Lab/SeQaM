@@ -1,0 +1,18 @@
+services:
+  network_event_manager:
+    image: ${SEQAM_NETWORK_EVENT_MANAGER_IMAGE_NAME}
+    build: 
+      context: ../../../
+      dockerfile: Network/Modules/EventManager/Dockerfile
+    container_name: network_event_manager
+    deploy:
+      resources:
+        limits:
+          cpus: 4.0
+          memory: 7500M
+    ports:
+      - "${NETWORK_EVENT_MANAGER_PORT}:8887"
+      - "5201:5201"
+    environment:
+      - OTLP_URL=${OTLP_URL}
+    

@@ -1,0 +1,29 @@
+{
+  "experiment_name": "2024-10-14 at 10:55 experiment",
+  "eventList": [
+    {
+      "command": "cpu_load src_device_type:ue src_device_name:ue001 cores:5 load:20 time:60s",
+      "executionTime": 8000
+    },
+    {
+      "command": "cpu_load src_device_type:server src_device_name:svr101 cores:5 load:20 time:60s",
+      "executionTime": 8000
+    },
+    {
+      "command": "memory_load src_device_type:ue src_device_name:ue001 workers:5 load:20m time:10s",
+      "executionTime": 10500
+    },
+    {
+      "command": "network_load src_device_type:ue src_device_name:load-client dst_device_type:server dst_device_name:load-server load:5 time:5s",
+      "executionTime": 10505
+    },
+    {
+      "command": "network_load src_device_type:server src_device_name:load-server dst_device_type:ue dst_device_name:load-client load:5 time:5s",
+      "executionTime": 16505
+    },
+    {
+      "command": "exit",
+      "executionTime": 21000
+    }
+  ]
+}

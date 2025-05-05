@@ -1,0 +1,26 @@
+[project]
+name = "seqam_fh_dortmund_project_emulate"
+version = "0.0.8"
+authors = [
+  { name="Jaime Sebastian Burbano Villavicencio", email="jaime.burbanovillavicencio@fh-dortmund.de" },
+  { name="Jürij Pigowski", email="iurii.pigovskyi@fh-dortmund.de" },
+]
+description = "Edge Diagnostic Platform API for the Project Emulate"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://git.inf.fh-dortmund.de/01/smart-edge-lab/emulate-edge-diagnostics-platform"
+Issues = "https://git.inf.fh-dortmund.de/01/smart-edge-lab/emulate-edge-diagnostics-platform/-/issues"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "main/Central",
+  "main/Distributed",
+  "main/Network"
+]

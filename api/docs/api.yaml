@@ -1,0 +1,402 @@
+openapi: 3.0.3
+info:
+  title: Edge Diagnostic Platform API v0.0.0
+  description: |-
+    The set of API calls to get metrics and traces
+  contact:
+    email: iurii.pigovskyi@fh-dortmund.de
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about EDP
+  url: https://git.inf.fh-dortmund.de/01/smart-edge-lab/emulate-edge-diagnostics-platform.git
+servers:
+  - url: http://127.0.0.1:5000/
+tags:
+  - name: Edge Diagnostic Platform
+    description: |-
+      The Edge Diagnostics Platform is a tool developed to 
+      facilitate Edge infrastructural performance analysis as well as event management, 
+      node assignment in Edge based deployments.
+    externalDocs:
+      description: Find out more
+      url: https://git.inf.fh-dortmund.de/01/smart-edge-lab/emulate-edge-diagnostics-platform.git
+paths:
+  /apps:
+    get:
+      tags:
+        - Applications
+      summary: EDPAPI1. Get application name list
+      operationId: getApps
+      responses:
+        '200':
+          description: Get all applications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationList'
+  /apps/{appName}/servers:
+    get:
+      tags:
+        - Servers
+      parameters:
+        - name: appName
+          in: path
+          description: application name from /apps
+          required: true
+          schema:
+            type: string
+      summary: EDPAPI2. Get server name list
+      operationId: getServers
+      responses:
+        '200':
+          description: Get all servers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerList'
+  /servers/{serverName}/metrics/cpu:
+    get:
+      tags:
+        - Metrics
+      summary: EDPAPI3. Get Central Processing Unit metrics
+      description: Measure CPU load on a given server during the last N milliseconds.
+      operationId: getCpu
+      parameters:
+        - name: serverName
+          in: path
+          description: Server hostname from /apps/{appName}/servers
+          required: true
+          schema:
+            type: string
+        - name: duration
+          in: query
+          description: Amount of milliseconds
+          required: false
+          schema:
+            type: integer
+            default: 500 milliseconds
+      responses:
+        '200':
+          description: Successfully collected CPU metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cpu'
+        '400':
+          description: Invalid server name supplied
+        '404':
+          description: Server not found
+        '422':
+          description: Validation exception
+      security:
+        - edp_auth:
+            - read:cpu
+  /servers/{serverName}/metrics/ram:
+    get:
+      tags:
+        - Metrics
+      summary: EDPAPI4. Get Random Access Memory metrics
+      description: Measure RAM load on a given server during the last N milliseconds
+      operationId: getRam
+      parameters:
+        - name: serverName
+          in: path
+          description: Server hostname from /apps/{appName}/servers
+          required: true
+          schema:
+            type: string
+        - name: duration
+          in: query
+          description: Amount of milliseconds
+          required: false
+          schema:
+            type: integer
+            default: 500 milliseconds
+      responses:
+        '200':
+          description: Successfully collected RAM metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ram'
+        '400':
+          description: Invalid server name supplied
+        '404':
+          description: Server not found
+        '422':
+          description: Validation exception
+      security:
+        - edp_auth:
+            - read:ram
+  /apps/{appName}/traces:
+    get:
+      tags:
+        - Traces
+      summary: EDPAPI5. Get trace by name
+      description: Get N last traces from a given app
+      operationId: getTraces
+      parameters:
+        - name: appName
+          in: path
+          description: application name from /apps
+          required: true
+          schema:
+            type: string
+        - name: length
+          in: query
+          description: Number of traces
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Successfully collected traces
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Traces'
+        '400':
+          description: Invalid app name supplied
+        '404':
+          description: App not found
+        '422':
+          description: Validation exception
+      security:
+        - edp_auth:
+            - read:trace
+  /apps/{appName}/spans/{spanName}:
+    get:
+      tags:
+        - Traces
+      summary: EDPAPI6. Get span by name
+      description: Get N last spans from a given app
+      operationId: getSpans
+      parameters:
+        - name: appName
+          in: path
+          description: application name from /apps
+          required: true
+          schema:
+            type: string
+        - name: spanName
+          in: path
+          description: user-defined span name
+          required: true
+          schema:
+            type: string
+        - name: length
+          in: query
+          description: Number of spans
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Successfully collected spans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Span'
+        '400':
+          description: Invalid app name supplied
+        '404':
+          description: App not found
+        '422':
+          description: Validation exception
+      security:
+        - edp_auth:
+            - read:trace
+  /servers/{serverName}/metrics/net:
+    get:
+      tags:
+        - Metrics
+      summary: EDPAPI7. Get network latency metrics
+      description: Measure network response time on a given server during 
+        the specified time-window or number of last loops.
+      operationId: getNetworkLatency
+      parameters:
+        - name: serverName
+          in: path
+          description: Server hostname from /apps/{appName}/servers
+          required: true
+          schema:
+            type: string
+        - name: duration
+          in: query
+          description: Time-window in milliseconds
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: length
+          in: query
+          description: Number of loops
+          required: false
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: Successfully collected latencies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Latency'
+        '400':
+          description: Invalid server name supplied
+        '404':
+          description: Server not found
+        '422':
+          description: Validation exception
+      security:
+        - edp_auth:
+            - read:net
+components:
+  schemas:
+    ApplicationList:
+      type: array
+      items:
+        type: string
+        example: "yolop"
+    ServerList:
+      type: array
+      items:
+        type: string
+        example: 'server1'
+    CpuLoad:
+      type: array
+      items:
+        type: object
+        required:
+          - core
+          - percentage
+        properties:
+          core:
+            type: integer
+            format: int32
+            example: 0
+            description: index of the CPU core
+          percentage:
+            type: integer
+            format: int8
+            example: 10
+            description: percentage of CPU load on the particular server
+    Cpu:
+      type: object
+      properties:
+        cpu-load:
+          $ref: '#/components/schemas/CpuLoad'
+        t0:
+          type: integer
+          example: 1722235579726
+          description: measurement start time
+        t1:
+          type: integer
+          example: 1722235699726
+          description: measurement end time
+        t1-t0:
+          type: integer
+          example: 120000
+          description: difference between t1 and t0
+    Ram:
+      type: object
+      required:
+        - free
+        - total
+      properties:
+        free:
+          type: integer
+          format: int64
+          example: 2348
+          description: number of megabytes available on the given server
+        total:
+          type: integer
+          format: int64
+          example: 74829
+          description: total number of megabytes the server possesses
+    Span:
+      type: object
+      required:
+        - timestamp
+        - duration
+      properties:
+        name:
+          type: string
+          example: send_data_to_server
+          description: Span's name
+        timestamp:
+          type: integer
+          format: int64
+          example: 1721734621982
+          description: Time in milliseconds since Unix epoch
+        duration:
+          type: integer
+          format: int64
+          example: 34729
+          description: Duration of a span in milliseconds
+    Trace:
+      type: object
+      required:
+        - id
+        - spans
+      properties:
+        id:
+          type: string
+          example: 74dd94c965b44b8480c2adaba93856eb
+          description: Unique trace id
+        spans:
+          type: array
+          items:
+            $ref: '#/components/schemas/Span'
+    Traces:
+      type: array
+      items:
+        $ref: '#/components/schemas/Trace'
+    Latency:
+      type: object
+      required:
+        - timestamp
+        - latency
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          example: 1721815341301
+          description: UTC time as milliseconds since the Unix epoch
+        latency:
+          type: integer
+          format: int64
+          example: 213
+          description: Network latency measurement in milliseconds
+  requestBodies:
+    Cpu:
+      description: Current CPU load
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Cpu'
+  securitySchemes:
+    edp_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:cpu: report CPU usage
+            read:cpu: read CPU measures
+            read:ram: read RAM measures
+            read:trace: read traces ans spans
+            read:net: read network latency
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

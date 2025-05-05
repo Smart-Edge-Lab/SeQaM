@@ -1,0 +1,5 @@
+docker build -t loadclient .
+
+This will build an image called "loadclient"
+loadclient image will be reffered in the topology configuration when creating the loadclient container
+

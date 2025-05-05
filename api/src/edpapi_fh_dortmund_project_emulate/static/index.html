@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SEQAM Chat</title>
+        <link rel="stylesheet" href="/static/css/style.css">
+        <script src="/static/js/main.js"></script>
+    </head>
+    <body onload="main.init()">
+        <div class="head">
+            <h1>SEQAM Chat {{VERSION}} ;)</h1>
+            <a href="/docs">API docs</a>
+        </div>
+        <div id="main" class="main">
+            <ul id='messages'>
+            </ul>
+        </div>
+        <div class="footer">
+            <form action="" onsubmit="event.preventDefault(); main.sendMessage(event)">
+                <input size="200" class=".input" type="text" id="messageText" autocomplete="on"
+                       url="ws://{{API_HOST}}:{{API_PORT}}/console/ws" />
+                <button>Send</button>
+            </form>
+        </div>
+    </body>
+</html>

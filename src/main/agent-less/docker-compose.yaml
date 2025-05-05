@@ -1,0 +1,17 @@
+---
+services:
+  openssh-server:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: openssh-server
+    environment:
+      - USER_NAME=user
+      - PUBLIC_KEY_URL=http://${API_HOST}:${API_PORT}/static/ecdsa.pub
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - SUDO_ACCESS=true #optional
+    volumes:
+      - ~/openssh-server-shared:/home/shared
+    ports:
+      - 2222:2222
+    restart: unless-stopped

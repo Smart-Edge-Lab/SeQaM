@@ -1,0 +1,1 @@
+../../bare-composes/add-private-docker-registry.sh

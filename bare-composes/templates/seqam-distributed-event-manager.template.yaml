@@ -1,0 +1,14 @@
+services:
+  distributed_event_manager:
+    image: ${SEQAM_DISTRIBUTED_EVENT_MANAGER_IMAGE_NAME}
+    container_name: seqam-distributed-event-manager-bare
+    deploy:
+      resources:
+        limits:
+          cpus: 4.0
+          memory: 7500M
+    ports:
+      - "9001:9001"
+    environment:
+      - OTLP_URL=${OTLP_URL}
+    

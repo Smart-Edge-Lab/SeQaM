@@ -1,0 +1,6 @@
+docker build -t loadserver .
+
+This will build an image called "loadserver"
+loadserver image will be reffered in the topology configuration when creating the loadserver container
+
+

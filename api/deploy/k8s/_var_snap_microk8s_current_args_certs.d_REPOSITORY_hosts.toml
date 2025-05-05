@@ -1,0 +1,4 @@
+server = "http://${PRIVATE_DOCKER_REGISTRY}"
+
+[host."http://${PRIVATE_DOCKER_REGISTRY}"]
+capabilities = ["pull", "resolve"]

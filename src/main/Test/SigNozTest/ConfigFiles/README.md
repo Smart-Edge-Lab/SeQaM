@@ -1,0 +1,1 @@
+The files here are just the examples of how your own files can look like after deleting the demo examples in Signoz

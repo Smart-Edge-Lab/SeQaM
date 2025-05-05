@@ -1,0 +1,5 @@
+docker build -t mclient .
+
+This will build an image called "mclient"
+mclient image will be reffered in the topology configuration when creating the client container
+

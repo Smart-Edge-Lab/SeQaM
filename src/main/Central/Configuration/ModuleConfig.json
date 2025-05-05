@@ -1,0 +1,89 @@
+{
+    "modules":[
+       {
+          "console":{
+             "name":"Console",
+             "description":"Console module to input commands",
+             "port":0,
+             "host":"0.0.0.0",
+             "paths":[
+                
+             ]
+          }
+       },
+       {
+          "command_translator":{
+             "name":"Command Translator",
+             "description":"Get raw commands and forward them to orchestrators in json format",
+             "port": $COMMAND_TRANSLATOR_PORT | 8001,
+             "host": "$COMMAND_TRANSLATOR_HOST | 172.22.174.157",
+             "paths":[
+                {
+                   "translate":{
+                      "endpoint":"/translate/"
+                   }
+                }
+             ]
+          }
+       },
+       {
+          "event_orchestrator":{
+             "name":"Event Orchestrator",
+             "description":"Get event requests",
+             "port": $EVENT_ORCHESTRATOR_PORT | 8002,
+             "host": "$EVENT_ORCHESTRATOR_HOST | 172.22.174.157",
+             "paths":[
+                {
+                   "event":{
+                      "endpoint":"/event/"
+                   }
+                }
+             ]
+          }
+       },
+       {
+         "data_manager":{
+            "name":"Data Manager",
+            "description":"Provides an access to the data collected by EDP",
+            "port": $DATA_MANAGER_PORT | 8003,
+            "host": "$DATA_MANAGER_HOST | 172.22.174.157",
+            "paths":[
+               {
+                  "cpu":{
+                     "endpoint":"/metrics/cpu/"
+                  }
+               },
+               {
+                  "memory":{
+                     "endpoint":"/metrics/memory/"
+                  }
+               },
+               {
+                  "traces":{
+                     "endpoint":"/traces/"
+                  }
+               }
+            ]
+         }
+      }
+      ,
+      {
+        "experiment_dispatcher":{
+           "name":"Experiment Dispatcher",
+           "description":"Executes the configured experiment",
+           "port": $EXPERIMENT_DISPATCHER_PORT | 8004,
+           "host": "$EXPERIMENT_DISPATCHER_HOST | 172.22.174.157",
+           "paths":[
+              {
+                 "start":{
+                    "endpoint":"/experiment/init/"
+                 },
+                 "stop":{
+                    "endpoint":"/experiment/init/"
+                 }
+              }
+           ]
+        }
+     }
+    ]
+ }

@@ -1,0 +1,50 @@
+name: testnetwork
+topology:
+  nodes:
+    router1:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      binds:
+        - router1/daemons:/etc/frr/daemons
+        - router1/frr.conf:/etc/frr/frr.conf
+    router2:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      binds:
+        - router2/daemons:/etc/frr/daemons
+        - router2/frr.conf:/etc/frr/frr.conf
+    ### Your client image goes here
+    client:
+       kind: linux
+       image: mclient:latest  ### Image that we built at the beginning
+
+    ### Your server image goes here
+    server:
+       kind: linux
+       image: mserver:latest 
+    
+    ### Client to generate load
+    loadclient:
+       kind: linux
+       image: loadclient:latest
+
+    loadserver:
+       kind: linux
+       image: loadserver:latest 
+
+  
+  ## Defining how devices are connected 
+  links:
+   
+    - endpoints: ["client:eth1", "router1:eth1"]   ## Your client is connected to the router1 Ethernet port 1
+    - endpoints: ["loadclient:eth1", "router1:eth3"]  ## Loadclient  is connected to the router1 Ethernet port 3
+
+    
+    - endpoints: ["router1:eth2", "router2:eth2"]  ## Connection between router 1 and 2
+   
+    - endpoints: ["server:eth1", "router2:eth1"]  ## Your server is connected to the router2 Ethernet port 1
+    - endpoints: ["loadserver:eth1", "router2:eth3"] ## Loadserver is connected to the router2 Ethernet port 3  
+
+    
+
+   

@@ -1,0 +1,91 @@
+{
+    "distributed":
+    {
+        "ue":[
+            {
+                "name": "ue001",
+                "description": "test ue",
+                "port": 9001,
+                "host": "192.168.122.38",
+                "ssh_port": 2222,
+                "ssh_user": "user",
+                "paths":[
+                   {
+                      "event":{
+                         "endpoint":"/event/"
+                      },
+                      "cpu_load":{
+                        "endpoint":"/event/stress/cpu_load"
+                     },
+                     "memory_load":{
+                       "endpoint":"/event/stress/memory_load"
+                    }
+                   }
+                ]
+            },
+            {
+                "name": "load-client",
+                "host": "192.168.122.121",
+                "port": 9002,
+                "paths": [
+                   {
+                     "network_load":{
+                       "endpoint":"/event/network/load"
+                    }
+                   }
+                ]
+            }
+        ],
+        "server":[
+            {
+                "name":"svr101",
+                "description":"test server",
+                "port":9001,
+                "host":"172.22.174.157",
+                "paths":[
+                   {
+                      "event":{
+                         "endpoint":"/event/"
+                      },
+                      "cpu_load":{
+                        "endpoint":"/event/stress/cpu_load"
+                     },
+                     "memory_load":{
+                       "endpoint":"/event/stress/memory_load"
+                    }
+                   }
+                ]
+            },
+            {
+                "name": "load-server",
+                "host": "192.168.122.44",
+                "port": 9002,
+                "paths":[
+                   {
+                     "network_load":{
+                       "endpoint":"/event/network/load"
+                    }
+                   }
+                ]
+            }
+        ],
+        "router":[
+         {
+             "name":"ntw_agent",
+             "description":"endpoint of the agent that runs in the same network emulator VM. The name is hardcoded",
+             "port": 8887,
+             "host":"172.22.174.175",
+             "paths":[
+                {
+                   "network_bandwidth":{
+                      "endpoint":"/event/network/bandwidth"
+                   },
+                   "network_load":{
+                     "endpoint":"/event/network/load"
+                  }
+                }
+             ]
+         }
+      ]
+    }
+}

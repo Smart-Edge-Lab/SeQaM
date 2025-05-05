@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edpapi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edpapi
+  template:
+    metadata:
+      labels:
+        app: edpapi
+    spec:
+      containers:
+      - name: edpapi
+        image: ${EDPAPI_IMAGE_NAME}
+        env:
+          - name: DATABASE_ENDPOINT
+            value: $DATABASE_ENDPOINT
+        ports:
+        - containerPort: 80

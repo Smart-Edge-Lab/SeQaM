@@ -1,0 +1,16 @@
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"speed":"10","time":"6s"}' \
+  http://172.22.174.175:8000/event/network/bandwidth
+
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"load":"10","time":"200s"}' \
+  http://172.22.174.175:8000/event/network/load
+
+
+
+
+
+

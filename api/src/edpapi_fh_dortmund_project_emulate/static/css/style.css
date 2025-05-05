@@ -1,0 +1,38 @@
+body {
+    background-color: skyblue;
+    height:100vh;
+    width: 70vw;
+}
+
+.head {
+    height:20vh;
+}
+
+.main {
+    height:70vh;
+    overflow-y: scroll;
+}
+
+.footer {
+    height:5vh;
+    width: 90vw;
+}
+
+.input {
+    width: 1000px;
+}
+
+.error {
+    background-color: #FA2A55;
+    color: white;
+}
+
+.success {
+    background-color: green;
+    color: white;
+}
+
+.my-message {
+    text-align: right;
+    background-color: cyan;
+}

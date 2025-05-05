@@ -1,0 +1,17 @@
+services:
+  distributed_event_manager:
+    image: ${SEQAM_DISTRIBUTED_EVENT_MANAGER_IMAGE_NAME}
+    build: 
+      context: ../../../
+      dockerfile: Distributed/Modules/EventManager/Dockerfile
+    container_name: distributed_event_manager
+    deploy:
+      resources:
+        limits:
+          cpus: 4.0
+          memory: 7500M
+    ports:
+      - "${DISTRIBUTED_EVENT_MANAGER_PORT}:9001"
+    environment:
+      - OTLP_URL=${OTLP_URL}
+    

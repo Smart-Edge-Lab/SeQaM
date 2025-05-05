@@ -1,0 +1,56 @@
+version: "2.4"
+
+services:
+  edpapi:
+    image: ${EDPAPI_IMAGE_NAME}
+    ports:
+      - ${API_PORT}:80
+    environment:
+      - DATABASE_ENDPOINT=${DATABASE_ENDPOINT}
+      - COMMAND_TRANSLATOR_HOST=${COMMAND_TRANSLATOR_HOST}
+      - COMMAND_TRANSLATOR_PORT=${COMMAND_TRANSLATOR_PORT}
+      - API_HOST=${API_HOST}
+      - API_PORT=${API_PORT}
+    volumes:
+      - ./config/ecdsa.pub:/app/edpapi_fh_dortmund_project_emulate/static/ecdsa.pub
+  seqam-command-translator:
+    image: ${SEQAM_COMMAND_TRANSLATOR_IMAGE_NAME}
+    ports:
+      - "${COMMAND_TRANSLATOR_PORT}:${COMMAND_TRANSLATOR_PORT}"
+    volumes:
+      - ./config:/app/Configuration
+    environment:
+      - COMMAND_TRANSLATOR_HOST=${COMMAND_TRANSLATOR_HOST}
+      - COMMAND_TRANSLATOR_PORT=${COMMAND_TRANSLATOR_PORT}
+      - EVENT_ORCHESTRATOR_HOST=${EVENT_ORCHESTRATOR_HOST}
+      - EVENT_ORCHESTRATOR_PORT=${EVENT_ORCHESTRATOR_PORT}
+      - API_HOST=${API_HOST}
+      - API_PORT=${API_PORT}
+  seqam-event-orchestrator:
+    image: ${SEQAM_EVENT_ORCHESTRATOR_IMAGE_NAME}
+    ports:
+      - "${EVENT_ORCHESTRATOR_PORT}:${EVENT_ORCHESTRATOR_PORT}"
+    volumes:
+      - ./config:/app/Configuration
+    environment:
+      - EVENT_ORCHESTRATOR_HOST=${EVENT_ORCHESTRATOR_HOST}
+      - EVENT_ORCHESTRATOR_PORT=${EVENT_ORCHESTRATOR_PORT}
+      - EXPERIMENT_DISPATCHER_HOST=${EXPERIMENT_DISPATCHER_HOST}
+      - EXPERIMENT_DISPATCHER_PORT=${EXPERIMENT_DISPATCHER_PORT}
+      - API_HOST=${API_HOST}
+      - API_PORT=${API_PORT}
+  seqam-experiment-dispatcher:
+    image: ${SEQAM_EXPERIMENT_DISPATCHER_IMAGE_NAME}
+    ports:
+      - "${EXPERIMENT_DISPATCHER_PORT}:${EXPERIMENT_DISPATCHER_PORT}"
+    volumes:
+      - ./config:/app/Configuration
+    command: ["python", "./Modules/experiment_dispatcher/ExperimentDispatcherModule.py", "-m", "trigger"]
+    environment:
+      - EXPERIMENT_DISPATCHER_HOST=${EXPERIMENT_DISPATCHER_HOST}
+      - EXPERIMENT_DISPATCHER_PORT=${EXPERIMENT_DISPATCHER_PORT}
+      - COMMAND_TRANSLATOR_HOST=${COMMAND_TRANSLATOR_HOST}
+      - COMMAND_TRANSLATOR_PORT=${COMMAND_TRANSLATOR_PORT}
+      - OTLP_URL=${OTLP_URL}
+      - API_HOST=${API_HOST}
+      - API_PORT=${API_PORT}
