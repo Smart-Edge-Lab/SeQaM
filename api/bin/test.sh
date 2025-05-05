@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")" || exit $?
 
 . venv.sh
 

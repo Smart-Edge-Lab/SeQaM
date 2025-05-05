@@ -6,7 +6,7 @@ from edpapi_fh_dortmund_project_emulate.server.ServerService import ServerServic
 
 
 class ServerServiceSignoz(ServerService):
-    def get_servers(self, app: str) -> list[str]:
+    def get_servers(self, app: str | None = None) -> list[str]:
         sql = '''
         SELECT DISTINCT simpleJSONExtractString(labels, 'host_name')
         FROM signoz_metrics.distributed_time_series_v4

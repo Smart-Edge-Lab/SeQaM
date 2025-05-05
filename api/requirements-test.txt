@@ -1,3 +1,4 @@
 mypy==1.11.1
 pytest==8.3.2
 pandas-stubs==2.2.2.240807
+freezegun==0.3.4

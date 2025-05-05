@@ -12,6 +12,7 @@ from ModuleManagement.DataModels.event import EventFactory
 from ModuleManagement.RestFactory import RestFactory
 from Modules.EventManager.Constants import DistrInfrastructureEventConstants
 from Modules.EventManager.Infrastructure.InfrastructureEventsRequester import InfrastructureEventsRequester
+from Modules.metrics.cpu_metrics_collector import CpuMetricsCollector
 
 
 
@@ -58,7 +59,7 @@ class DistrEventManagerModuleREST:
 
 
 if __name__ == "__main__":
-
+    CpuMetricsCollector.collect_cpu_metrics()
     eventManagerRESTEngine = DistrEventManagerModuleREST()
     port = int(os.environ.get('DISTRIBUTED_EVENT_MANAGER_PORT') or 9001)
     t3 = threading.Thread(

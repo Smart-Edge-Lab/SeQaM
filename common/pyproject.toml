@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling", "pydantic==2.8.2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "seqam_data_fh_dortmund_project_emulate"
+version = "0.0.1"
+authors = [
+  { name="Juri Pigowski", email="pigovsky@gmail.com" },
+]
+description = "Common datatypes for SeQaM"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://git.inf.fh-dortmund.de/01/smart-edge-lab/emulate-edge-diagnostics-platform.git"
+Issues = "https://git.inf.fh-dortmund.de/01/smart-edge-lab/emulate-edge-diagnostics-platform.git/issues"

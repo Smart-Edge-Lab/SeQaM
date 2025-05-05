@@ -6,13 +6,13 @@ RUN apk add --no-cache iperf3
 
 WORKDIR /app
 
-COPY Network/requirements.txt .
+COPY src/main/Network/requirements.txt .
 
 RUN pip install --break-system-packages --no-cache-dir -r requirements.txt
 
-COPY Network .
+COPY src/main/Network .
 
-COPY Central/ModuleManagement ModuleManagement
+COPY src/main/Central/ModuleManagement ModuleManagement
 
 ARG VERSION
 ENV VERSION=$VERSION

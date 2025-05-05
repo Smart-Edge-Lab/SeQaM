@@ -5,19 +5,19 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Copy the requirements.txt file and install the dependencies
-COPY build/requirements.txt .
+COPY src/main/Central/build/requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Configuration and ModuleManagement directories
-COPY Configuration ./Configuration
+COPY src/main/Central/Configuration ./Configuration
 
 # Copy the Utilities and ModuleManagement directories
-COPY Utilities ./Utilities
-COPY ModuleManagement ./ModuleManagement
+COPY src/main/Central/Utilities ./Utilities
+COPY src/main/Central/ModuleManagement ./ModuleManagement
 
 # Copy the experiment_dispatcher module
-COPY Modules/experiment_dispatcher ./Modules/experiment_dispatcher
+COPY src/main/Central/Modules/experiment_dispatcher ./Modules/experiment_dispatcher
 
 ARG VERSION
 ENV VERSION=$VERSION

@@ -16,3 +16,4 @@ iperfLog.txt
 /bare-composes/seqam-central/
 /bare-composes/seqam-distributed-event-manager/
 /bare-composes/seqam-network-event-manager/
+/common/dist/

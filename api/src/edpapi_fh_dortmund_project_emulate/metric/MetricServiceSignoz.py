@@ -1,9 +1,10 @@
-from typing import List
+from fastapi import HTTPException
 
 from edpapi_fh_dortmund_project_emulate.common.DbService import DbService
-from edpapi_fh_dortmund_project_emulate.metric.Cpu import Cpu, CpuLoad
-from edpapi_fh_dortmund_project_emulate.metric.MetricService import MetricService
+from edpapi_fh_dortmund_project_emulate.metric.Cpu import Cpu
+from edpapi_fh_dortmund_project_emulate.metric.MetricService import MetricService, build_cpu_usage
 from edpapi_fh_dortmund_project_emulate.metric.Ram import Ram
+from seqam_data_fh_dortmund_project_emulate.system_state import SystemState
 
 
 def _get_last_cpu_measurement_time(server_name: str, where: str = '') -> int:
@@ -31,7 +32,7 @@ def _get_last_cpu_measurement_time(server_name: str, where: str = '') -> int:
     return int(r.result_rows[0][0]) if r and r.result_rows else 0
 
 
-def _cumulative_cpu_idle_at(server_name: str, t: int) -> dict[int, int]:
+def _cumulative_cpu_idle_at(server_name: str, t: int) -> dict[int, float]:
     """
     Get total seconds each logical CPU was idle
     at time instant t
@@ -100,23 +101,30 @@ def _average_ram_for_state(server_name: str, state: str, start_time: int) -> flo
 
 
 class MetricServiceSignoz(MetricService):
+    def get_ram_series(self, server_name: str, start_time: int, end_time: int) -> list[Ram]:
+        raise HTTPException(
+            status_code=501,
+            detail='Not implemented in MetricServiceSignoz. See other implementations of MetricService'
+        )
+
+    def submit_host_metrics(self, system_state: SystemState) -> SystemState:
+        raise HTTPException(
+            status_code=501,
+            detail='Not implemented in MetricServiceSignoz. See other implementations of MetricService'
+        )
+
+    def get_cpu_series(self, host_name: str, start_time: int, end_time: int) -> list[Cpu]:
+        raise HTTPException(
+            status_code=501,
+            detail='Not implemented in MetricServiceSignoz. See other implementations of MetricService'
+        )
+
     def get_cpu(self, server_name: str, duration: int) -> Cpu:
         t1 = _get_last_cpu_measurement_time(server_name)
         t0 = _get_last_cpu_measurement_time(server_name, f'AND unix_milli < {t1 - duration}')
         cpu_t1 = _cumulative_cpu_idle_at(server_name, t1)
         cpu_t0 = _cumulative_cpu_idle_at(server_name, t0)
-        cpu_load = [
-          CpuLoad(
-            core=r[0],
-            percentage=int((1 - (cpu_t1[r[0]] - r[1]) / (t1 - t0)) * 100)
-          ) for r in sorted(cpu_t0.items())
-        ]
-        return Cpu(
-            cpu_load=cpu_load,
-            t0=t0,
-            t1=t1,
-            t1_t0=t1 - t0
-        )
+        return build_cpu_usage(t0, t1, cpu_t0, cpu_t1)
 
     def get_ram(self, server_name: str, duration: int) -> Ram:
         t_now = _latest_ram_measurement_time(server_name)

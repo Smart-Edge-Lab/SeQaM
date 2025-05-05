@@ -11,6 +11,7 @@ services:
       - COMMAND_TRANSLATOR_PORT=${COMMAND_TRANSLATOR_PORT}
       - API_HOST=${API_HOST}
       - API_PORT=${API_PORT}
+      - SEQAM_SKIP_MIGRATIONS=${SEQAM_SKIP_MIGRATIONS}
     volumes:
       - ../../../../api/src/edpapi_fh_dortmund_project_emulate/static/ecdsa.pub:/app/edpapi_fh_dortmund_project_emulate/static/ecdsa.pub
   seqam-command-translator:

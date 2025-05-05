@@ -1,7 +1,9 @@
 #!/bin/bash -x
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")" || exit $?
 
-. venv.sh
+cd ..
+
+. .venv/bin/activate
 
 python3 -m mypy --strict src/ tests/

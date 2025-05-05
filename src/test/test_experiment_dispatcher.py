@@ -6,6 +6,7 @@ from threading import Thread
 import time
 from unittest.mock import patch
 
+import freezegun
 from Modules.experiment_dispatcher.ExperimentDispatcher import ExperimentDispatcher
 from Modules.experiment_dispatcher.ExperimentDispatcherModule import ExperimentDispatcherModuleREST, \
     ExperimentDispatcherModuleEngine
@@ -50,6 +51,7 @@ _EXPERIMENT = {
 }
 
 
+@freezegun.freeze_time('2024-07-01')
 class ExperimentDispatcherTest(unittest.TestCase):
     def setUp(self):
         self.module_endpoint_generator_patcher = patch('Modules.experiment_dispatcher.ExperimentDispatcher.ModuleEndpointGenerator')
@@ -82,7 +84,7 @@ class ExperimentDispatcherTest(unittest.TestCase):
 
     def test_run_iterator(self):
         self.experiment_dispatcher._run_iterator(copy.deepcopy(_EXPERIMENT))
-        self.tracer_mock.start_as_current_span.assert_called_once_with('test_case_1')
+        self.tracer_mock.start_as_current_span.assert_called_once_with('test_case_1-01.07.2024T00:00:00')
         self.ensure_commands_order()
         self.ensure_timing()
 
@@ -114,7 +116,9 @@ class ExperimentDispatcherTest(unittest.TestCase):
         self.assertLess(len(calls), len(_EXPERIMENT['eventList']))
         self.ensure_timing()
         time.sleep(.5)
-        self.output_to_console_mock.assert_called_once_with('ExperimentDispatcher', 'Experiment test_case_1 is stopped')
+        self.output_to_console_mock.assert_called_once_with(
+            'ExperimentDispatcher', 'Experiment test_case_1-01.07.2024T00:00:00 is stopped'
+        )
         request_json_patch.stop()
         file_reader_patch.stop()
 

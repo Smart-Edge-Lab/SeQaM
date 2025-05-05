@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 import sys
 import threading
@@ -79,7 +80,10 @@ class ExperimentDispatcher():
         """
         A thread that reads the events in the file and then puts them in a queue to be dispatched 
         """
-        experiment_name = experiment_data["experiment_name"]
+        experiment_name = (
+            f'{experiment_data["experiment_name"]}-'
+            f'{datetime.now().strftime("%d.%m.%YT%H:%M:%S")}'
+        )
         event_list = experiment_data["eventList"]
         event_list = sorted(event_list, key=lambda e: e['executionTime'])
         init_time_in_milliseconds = int(round(time.time() * 1000))

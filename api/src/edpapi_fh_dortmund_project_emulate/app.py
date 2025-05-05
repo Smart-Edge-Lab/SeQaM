@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 import requests  # type: ignore
@@ -17,13 +18,19 @@ from edpapi_fh_dortmund_project_emulate.experiment.experiment_service import Exp
 from edpapi_fh_dortmund_project_emulate.experiment.experiment_service_signoz import ExperimentServiceSignoz
 from edpapi_fh_dortmund_project_emulate.metric.Cpu import Cpu
 from edpapi_fh_dortmund_project_emulate.metric.MetricService import MetricService
-from edpapi_fh_dortmund_project_emulate.metric.MetricServiceSignoz import MetricServiceSignoz
+from edpapi_fh_dortmund_project_emulate.metric.metric_service_own import MetricServiceOwn
 from edpapi_fh_dortmund_project_emulate.metric.Ram import Ram
+from edpapi_fh_dortmund_project_emulate.migration import migrator
 from edpapi_fh_dortmund_project_emulate.server.ServerService import ServerService
-from edpapi_fh_dortmund_project_emulate.server.ServerServiceSignoz import ServerServiceSignoz
+from edpapi_fh_dortmund_project_emulate.server.server_service_own import ServerServiceOwn
 from edpapi_fh_dortmund_project_emulate.span.Span import Span, SpanStatistics
 from edpapi_fh_dortmund_project_emulate.span.SpanService import SpanService
 from edpapi_fh_dortmund_project_emulate.span.SpanServiceSignoz import SpanServiceSignoz
+from seqam_data_fh_dortmund_project_emulate.system_state import SystemState
+
+
+if not migrator.migrate():
+    sys.exit(1)
 
 
 current_file = Path(__file__)
@@ -45,8 +52,8 @@ templates = Jinja2Templates(directory=static_root_absolute)
 
 application_service: ApplicationService = ApplicationServiceSignoz()
 span_service: SpanService = SpanServiceSignoz()
-metric_service: MetricService = MetricServiceSignoz()
-server_service: ServerService = ServerServiceSignoz()
+metric_service: MetricService = MetricServiceOwn()
+server_service: ServerService = ServerServiceOwn()
 experiment_service: ExperimentService = ExperimentServiceSignoz(span_service)
 
 open_consoles: list[WebSocket] = []
@@ -60,6 +67,11 @@ def get_health() -> str:
 @app.get("/apps")
 def get_apps() -> list[str]:
     return application_service.get_apps()
+
+
+@app.get('/servers')
+def get_all_servers() -> list[str]:
+    return server_service.get_servers()
 
 
 @app.get('/apps/{app_name}/servers')
@@ -134,14 +146,30 @@ def get_experiment_statistics_for_app(
     )
 
 
+@app.post('/metrics')
+def submit_host_state(system_state: SystemState, request: Request) -> SystemState:
+    system_state.host = request.client.host if request and request.client else None
+    return metric_service.submit_host_metrics(system_state)
+
+
 @app.get('/servers/{server_name}/metrics/cpu')
 def get_cpu(server_name: str, duration: int = 500) -> Cpu:
     return metric_service.get_cpu(server_name, duration)
 
 
+@app.get('/servers/{server_name}/metrics/cpu/series')
+def get_cpu_time_series(server_name: str, start_time: int, end_time: int) -> list[Cpu]:
+    return metric_service.get_cpu_series(server_name, start_time, end_time)
+
+
 @app.get('/servers/{server_name}/metrics/ram')
 def get_ram(server_name: str, duration: int = 500) -> Ram:
     return metric_service.get_ram(server_name, duration)
+
+
+@app.get('/servers/{server_name}/metrics/ram/series')
+def get_ram_time_series(server_name: str, start_time: int, end_time: int) -> list[Ram]:
+    return metric_service.get_ram_series(server_name, start_time, end_time)
 
 
 @app.get("/", response_class=HTMLResponse)
