@@ -1,4 +1,4 @@
-# Edge Diagnostic Platform API
+# SeQaM API
 
 run
 ```bash
