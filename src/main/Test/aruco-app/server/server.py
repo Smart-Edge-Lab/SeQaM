@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, WebSocket
 import cv2 as cv
 import numpy as np
@@ -22,7 +24,7 @@ trace.set_tracer_provider(
 
 # Configure OTLP Exporter to send data to SigNoz
 otlp_exporter = OTLPSpanExporter(
-    endpoint="http://172.22.174.176:4317",  # Default SigNoz OTLP receiver port
+    endpoint=os.getenv('OTLP_URL') or "http://172.22.174.176:4317",  # Default SigNoz OTLP receiver port
     insecure=True
 )
 

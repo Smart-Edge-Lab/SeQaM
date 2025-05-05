@@ -1,4 +1,6 @@
 import asyncio
+import os
+
 import cv2 as cv
 import websockets
 import numpy as np
@@ -17,8 +19,8 @@ from opentelemetry.context import get_current
 # Constants
 _SERVICE_NAME_ = "image_processing"
 VIDEO_SOURCE = "aruco_markers.mkv"
-SERVER_ADDRESS = "server"
-ENDPOINT = "http://172.22.174.176:4317"
+SERVER_ADDRESS = os.getenv('SERVER_ADDRESS') or "server"
+ENDPOINT = os.getenv('OTLP_URL') or "http://172.22.174.176:4317"
 
 # Set up the tracer provider with service name
 resource = Resource.create({SERVICE_NAME: _SERVICE_NAME_})
@@ -117,4 +119,4 @@ async def send_frames(uri: str) -> None:
 
 # Start sending frames to the server
 if __name__ == "__main__":
-    asyncio.run(send_frames('ws://server:8000/ws'))
+    asyncio.run(send_frames(f'ws://{SERVER_ADDRESS}:8000/ws'))

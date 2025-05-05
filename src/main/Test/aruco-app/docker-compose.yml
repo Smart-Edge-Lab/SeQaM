@@ -6,6 +6,8 @@ services:
       - "8000:8000"
     volumes:
       - ./server:/app
+    environment:
+      - OTLP_URL=192.168.122.162:4317
 
   client:
     build: ./client
@@ -14,3 +16,6 @@ services:
     volumes:
       - ./client:/app
       - ./client/aruco_markers.mkv:/app/aruco_markers.mkv
+    environment:
+      - OTLP_URL=192.168.122.162:4317
+      - SERVER_ADDRESS=192.168.122.164
