@@ -22,7 +22,7 @@ The EMULATE project is part of the IPCEI-CIS (standing for Important Project of 
 
 In case you have found SeQaM useful, please cite our work as:
 
-J. S. Burbano et al., "SeQaM: A Service Quality Manager for Edge Computing," 2025 International Wireless Communications and Mobile Computing (IWCMC), Abu Dhabi, United Arab Emirates, 2025, pp. 305-311, doi: 10.1109/IWCMC65282.2025.11059713.
+J. S. Burbano, Y. Pigovskyi, E.r Zhantileuov, I. Dokuchaev, M. Liyanage, A. K. Idrees and R. Schuster, "SeQaM: A Service Quality Manager for Edge Computing," 2025 International Wireless Communications and Mobile Computing (IWCMC), Abu Dhabi, United Arab Emirates, 2025, pp. 305-311, doi: 10.1109/IWCMC65282.2025.11059713.
 
 J. S. Burbano, E. Zhantileuov, M. A. Salimi and R. Schuster, "Demo: End-to-End Service Quality Manager for Edge Computing," 2024 IEEE/ACM Symposium on Edge Computing (SEC), Rome, Italy, 2024, pp. 505-507, doi: 10.1109/SEC62691.2024.00059.
 
