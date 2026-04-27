@@ -34,3 +34,9 @@ See the [Contributing](https://github.com/Smart-Edge-Lab/SeQaM/blob/main/Contrib
 * [EMULATE PROJECT](https://www.fh-dortmund.de/microsite/smartedgelab/projekte/emulate.php?loc=en)
 * [8RA INITIATIVE](https://www.8ra.com/)
 * [BMWK Press Article](https://www.bmwk.de/Redaktion/EN/Artikel/Industry/ipcei-cis.html)
+
+
+
+<img width="356" height="201" alt="logo_ministry_small" src="https://github.com/user-attachments/assets/8d576a93-7d32-48c9-806b-ebc47a9ecaee" />
+
+
