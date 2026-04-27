@@ -37,6 +37,6 @@ See the [Contributing](https://github.com/Smart-Edge-Lab/SeQaM/blob/main/Contrib
 
 
 
-<img width="356" height="201" alt="logo_ministry_small" src="https://github.com/user-attachments/assets/8d576a93-7d32-48c9-806b-ebc47a9ecaee" />
+<p align="center"><img width="356" height="201" alt="logo_ministry_small" src="https://github.com/user-attachments/assets/8d576a93-7d32-48c9-806b-ebc47a9ecaee" />
 
 
