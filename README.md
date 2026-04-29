@@ -15,8 +15,12 @@ The Service Quality Manager (SeQaM) is a tool developed to facilitate end-to-end
 
 For all the information about SeQaM, please refer to our [WIKI](https://github.com/Smart-Edge-Lab/SeQaM/wiki).
 
+
 ## Acknowledgment
-The EMULATE project is part of the IPCEI-CIS (standing for Important Project of Common European Interest - Next Generation Cloud Infrastructure), funded by the European Union and the German Federal Ministry of Economics and Climate Action under research grant 13IPC012.
+
+The EMULATE project is part of the IPCEI-CIS program (**I**mportant **P**roject of **C**ommon **E**uropean **I**nterest - Next Generation **C**loud **I**nfrastructure and **S**ervices), funded by the European Union and the Federal Ministry for Economic Affairs and Energy under research grant 13IPC012.
+
+
 
 ## Citation
 
